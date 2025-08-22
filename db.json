@@ -1,0 +1,34 @@
+{
+  "products": [
+    {
+      "name": "Harina",
+      "price": 1000,
+      "stock": 200,
+      "id": 1
+    },
+    {
+      "name": "Leche",
+      "price": 1100,
+      "stock": 100,
+      "id": 2
+    },
+    {
+      "name": "Chocolate",
+      "price": 2000,
+      "stock": 50,
+      "id": 3
+    },
+    {
+      "name": "Huevo",
+      "price": 300,
+      "stock": 500,
+      "id": 4
+    },
+    {
+      "name": "Levadura",
+      "price": 200,
+      "stock": 300,
+      "id": 5
+    }
+  ]
+}

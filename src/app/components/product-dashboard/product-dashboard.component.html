@@ -1,0 +1,138 @@
+<div class="dashboard-container">
+  <!-- Header -->
+  <div class="dashboard-header">
+    <h1>Tabla de Productos</h1>
+    <button
+      class="btn btn-primary"
+      (click)="openModal(productModal)"
+      [disabled]="isLoading">
+      <i class="fas fa-plus"></i> Agregar Producto
+    </button>
+  </div>
+
+  <!-- Indicador de carga -->
+  <div *ngIf="isLoading" class="text-center mb-3">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <p class="mt-2 text-muted">Procesando...</p>
+  </div>
+
+  <!-- Contador de productos -->
+  <div class="mb-3">
+    <small class="text-muted">
+      Total de productos: <strong>{{ products.length }}</strong>
+    </small>
+  </div>
+
+  <!-- Tabla de productos -->
+  <div class="products-table-container">
+    <table class="products-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Precio (CLP)</th>
+          <th>Cantidad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products; trackBy: trackByProductId">
+          <td>{{ product.name }}</td>
+          <td>${{ product.price | number:'1.0-2' }}</td>
+          <td>{{ product.stock }}</td>
+          <td>
+            <button
+              class="btn btn-danger btn-sm"
+              (click)="deleteProduct(product.id)"
+              [disabled]="isLoading">
+              <i class="fas fa-trash"></i> Eliminar
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="products.length === 0 && !isLoading">
+          <td colspan="4" class="no-products">No hay productos disponibles</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal NgBootstrap -->
+  <ng-template #productModal let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Agregar nuevo producto</h4>
+      <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="modal.close()"
+        [disabled]="isLoading"></button>
+    </div>
+
+    <div class="modal-body">
+      <form [formGroup]="productForm" novalidate>
+        <div class="mb-3">
+          <label for="name" class="form-label">Nombre del producto *</label>
+          <input
+            type="text"
+            id="name"
+            class="form-control"
+            formControlName="name"
+            [class.is-invalid]="productForm.get('name')?.invalid && productForm.get('name')?.touched">
+          <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched"
+               class="invalid-feedback">
+            {{ getErrorMessage('name') }}
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="price" class="form-label">Precio (CLP)*</label>
+          <input
+            type="number"
+            id="price"
+            class="form-control"
+            formControlName="price"
+            step="0.01"
+            [class.is-invalid]="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+          <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched"
+               class="invalid-feedback">
+            {{ getErrorMessage('price') }}
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="stock" class="form-label">Cantidad *</label>
+          <input
+            type="number"
+            id="stock"
+            class="form-control"
+            formControlName="stock"
+            min="0"
+            [class.is-invalid]="productForm.get('stock')?.invalid && productForm.get('stock')?.touched">
+          <div *ngIf="productForm.get('stock')?.invalid && productForm.get('stock')?.touched"
+               class="invalid-feedback">
+            {{ getErrorMessage('stock') }}
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="closeModal()"
+        [disabled]="isLoading">
+        Cancelar
+      </button>
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="addProduct()"
+        [disabled]="productForm.invalid || isLoading">
+        <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status"></span>
+        {{ isLoading ? 'Agregando...' : 'Agregar Producto' }}
+      </button>
+    </div>
+  </ng-template>
+</div>

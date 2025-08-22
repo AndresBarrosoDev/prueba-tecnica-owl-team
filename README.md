@@ -1,27 +1,50 @@
-# ProductDashboard
+# Product Dashboard - Prueba Técnica
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+## Descripción
 
-## Development server
+Prueba técnica desarrollada para **Owl Team Solutions** para la posición de **Desarrollador Front-end**. Dashboard de productos desarrollado con Angular 16 y json-server como backend simulado.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Tecnologías Utilizadas
 
-## Code scaffolding
+- Angular 16.2.0
+- Bootstrap 5.3.7
+- json-server 0.17.4
+- TypeScript 5.1.3
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Instalación y Configuración
 
-## Build
+### 1. Clonar el repositorio
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+git clone [URL-DEL-REPOSITORIO]
+cd product-dashboard
+```
 
-## Running unit tests
+### 2. Instalar dependencias
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+npm install
+```
 
-## Running end-to-end tests
+### 3. Levantar el servidor json-server
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+npm run json-server
+```
 
-## Further help
+Servidor disponible en `http://localhost:3000`
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### 4. Levantar la aplicación Angular
+
+```bash
+npm start
+```
+
+Aplicación disponible en `http://localhost:4200`
+
+## Notas Importantes
+
+- Ambos servidores (json-server y Angular) deben ejecutarse simultáneamente
+- Iniciar json-server antes que la aplicación Angular
+
+---
