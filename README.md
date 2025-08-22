@@ -16,7 +16,7 @@ Prueba técnica desarrollada para **Owl Team Solutions** para la posición de **
 ### 1. Clonar el repositorio
 
 ```bash
-git clone [URL-DEL-REPOSITORIO]
+git clone git@github.com:AndresBarrosoDev/prueba-tecnica-owl-team.git
 cd product-dashboard
 ```
 
